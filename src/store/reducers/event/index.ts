@@ -1,4 +1,5 @@
 import {EventAction, EventActionEnum, EventState} from "./types";
+import {IEvent} from "../../../models/IEvent";
 
 
 const initialState: EventState = {
@@ -718,10 +719,19 @@ const initialState: EventState = {
             "distance": "7125"
         }
     ],
+    filterArray: [],
     typeFilter: '',
     conditionFilter: '',
-    textFilter: ''
+    textFilter: '',
 }
+type tplotOptions = {
+
+}
+const nameCol: {[key: string]: any} = {
+    Название: "name",
+    Количество: "count",
+    Расстояние: "distance",
+};
 
 export default function EventReducer(state = initialState, action: EventAction): EventState {
     switch (action.type) {
@@ -733,6 +743,47 @@ export default function EventReducer(state = initialState, action: EventAction):
             return {...state, textFilter: action.payload}
         case EventActionEnum.SET_CONDITION:
             return {...state, conditionFilter: action.payload}
+        case EventActionEnum.SET_ARRAY:
+            if (state.textFilter === '') {
+                return {...state, filterArray: state.events}
+            } else if (state.typeFilter === 'Наименование') {
+                return {
+                    ...state, filterArray: state.events.filter(el => {
+                        return el.name.toString().includes(state.textFilter.toString())
+                    })
+                }
+            } else if ((state.typeFilter === 'Расстояние') || (state.typeFilter === 'Количество') ) {
+                let cond = nameCol[state.typeFilter]
+                if (state.conditionFilter === '>') {
+                    return {
+                        ...state, filterArray: state.events.filter(el => {
+                            // @ts-ignore
+                            return +el[cond] >= +state.textFilter
+                        })
+                    }
+                } else if (state.conditionFilter === '<') {
+                    return {
+                        ...state, filterArray: state.events.filter(el => {
+                            // @ts-ignore
+                            return +el[cond] <= +state.textFilter
+                        })
+                    }
+                } else if (state.conditionFilter === '=') {
+                    return {
+                        ...state, filterArray: state.events.filter(el => {
+                            // @ts-ignore
+                            return +el[cond] === +state.textFilter
+                        })
+                    }
+                }
+                else {
+                    return state
+                }
+            }
+            else {
+                return state
+            }
+
         default:
             return state;
     }

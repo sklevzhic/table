@@ -3,9 +3,11 @@ import {IEvent} from "../../../models/IEvent";
 
 export interface EventState {
     events: IEvent[];
+    filterArray: IEvent[] | null;
     typeFilter: string | number,
     conditionFilter: number | string,
-    textFilter: number | string
+    textFilter: number | string,
+    // nameCol: object
 }
 
 export enum EventActionEnum {
@@ -13,6 +15,7 @@ export enum EventActionEnum {
     SET_TYPE = "SET_TYPE",
     SET_TEXT = "SET_TEXT",
     SET_CONDITION = "SET_CONDITION",
+    SET_ARRAY = "SET_ARRAY",
 }
 
 export interface SetEventsAction {
@@ -34,5 +37,9 @@ export interface SetConditionAction {
     type: EventActionEnum.SET_CONDITION;
     payload: string | number
 }
+export interface getFilterArrayAction {
+    type: EventActionEnum.SET_ARRAY;
+}
+
 export type EventAction =
-    SetEventsAction | SetTextAction | SetConditionAction | SetTypeAction
+    SetEventsAction | SetTextAction | SetConditionAction | SetTypeAction | getFilterArrayAction

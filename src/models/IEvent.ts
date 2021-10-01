@@ -3,8 +3,8 @@ export interface IEvent {
     guest?: string;
     date?: string;
     description?: string;
-    name?: string;
-    count?: number | string;
+    name: string;
+    count: number | string;
     id?: number | string;
-    distance?: number | string;
+    distance: number | string;
 }
