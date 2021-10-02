@@ -2,7 +2,7 @@ import {TableAction, TableActionEnum, TableState} from "./types";
 
 
 const initialState: TableState = {
-    events: [
+    array: [
         {
             "id": "1",
             "name": "Наименование1",
@@ -732,28 +732,30 @@ const nameCol: {[key: string]: any} = {
 
 export default function EventReducer(state = initialState, action: TableAction): TableState {
     switch (action.type) {
-        case TableActionEnum.SET_EVENTS:
-            return {...state, events: action.payload}
+        case TableActionEnum.SET_ARRAY:
+            return {...state, array: action.payload}
         case TableActionEnum.SET_TYPE:
             return {...state, typeFilter: action.payload}
         case TableActionEnum.SET_TEXT:
             return {...state, textFilter: action.payload}
         case TableActionEnum.SET_CONDITION:
             return {...state, conditionFilter: action.payload}
-        case TableActionEnum.SET_ARRAY:
+        case TableActionEnum.SET_FILTER_ARRAY:
             if (state.textFilter === '') {
-                return {...state, filterArray: state.events}
-            } else if (state.typeFilter === 'Наименование') {
+                return {...state, filterArray: state.array}
+            }
+            else if (state.typeFilter === 'Наименование') {
                 return {
-                    ...state, filterArray: state.events.filter(el => {
+                    ...state, filterArray: state.array.filter(el => {
                         return el.name.toString().includes(state.textFilter.toString())
                     })
                 }
-            } else if ((state.typeFilter === 'Расстояние') || (state.typeFilter === 'Количество') ) {
+            }
+            else if ((state.typeFilter === 'Расстояние') || (state.typeFilter === 'Количество') ) {
                 let cond = nameCol[state.typeFilter]
                 if (state.conditionFilter === '>') {
                     return {
-                        ...state, filterArray: state.events.filter(el => {
+                        ...state, filterArray: state.array.filter(el => {
                             // @ts-ignore
                             return +el[cond] >= +state.textFilter
                         })
@@ -761,7 +763,7 @@ export default function EventReducer(state = initialState, action: TableAction):
                 }
                 else if (state.conditionFilter === '<') {
                     return {
-                        ...state, filterArray: state.events.filter(el => {
+                        ...state, filterArray: state.array.filter(el => {
                             // @ts-ignore
                             return +el[cond] <= +state.textFilter
                         })
@@ -769,7 +771,7 @@ export default function EventReducer(state = initialState, action: TableAction):
                 }
                 else if (state.conditionFilter === '=') {
                     return {
-                        ...state, filterArray: state.events.filter(el => {
+                        ...state, filterArray: state.array.filter(el => {
                             // @ts-ignore
                             return +el[cond] === +state.textFilter
                         })
