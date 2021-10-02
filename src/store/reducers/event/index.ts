@@ -1,5 +1,4 @@
 import {EventAction, EventActionEnum, EventState} from "./types";
-import {IEvent} from "../../../models/IEvent";
 
 
 const initialState: EventState = {
@@ -724,9 +723,7 @@ const initialState: EventState = {
     conditionFilter: '',
     textFilter: '',
 }
-type tplotOptions = {
 
-}
 const nameCol: {[key: string]: any} = {
     Название: "name",
     Количество: "count",
@@ -761,14 +758,16 @@ export default function EventReducer(state = initialState, action: EventAction):
                             return +el[cond] >= +state.textFilter
                         })
                     }
-                } else if (state.conditionFilter === '<') {
+                }
+                else if (state.conditionFilter === '<') {
                     return {
                         ...state, filterArray: state.events.filter(el => {
                             // @ts-ignore
                             return +el[cond] <= +state.textFilter
                         })
                     }
-                } else if (state.conditionFilter === '=') {
+                }
+                else if (state.conditionFilter === '=') {
                     return {
                         ...state, filterArray: state.events.filter(el => {
                             // @ts-ignore

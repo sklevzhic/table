@@ -1,4 +1,4 @@
-export interface IEvent {
+export interface IArray {
     author?: string;
     guest?: string;
     date?: string;

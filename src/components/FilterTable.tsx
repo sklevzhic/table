@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {useActions} from '../hooks/useActions';
-import useInput from '../hooks/useInput';
-import useSelect from "../hooks/useSelect";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 
 interface FilterTableProps {
@@ -29,16 +27,20 @@ export const FilterTable: React.FC<FilterTableProps> = ({rowsPerPage, setRowsPer
 
     const changeType = (e: any) => setType(e.target.value)
     const changeCondition = (e: any) => setCondition(e.target.value)
-    const changeText = (e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)
+    const changeText = (e: any) => setText(e.target.value)
 
     return <>
-        <select onChange={e => changeType(e)}>
-            <option value="" selected disabled hidden>Выбрать</option>
+        <select defaultValue="1" onChange={e => changeType(e)}>
+            <option value="1" disabled>
+                Выбрать столбец
+            </option>
             {types.map(el => <option key={el} value={el}>{el}</option>)}
         </select>
 
-        <select disabled={!typeFilter} onChange={e => changeCondition(e)}>
-            <option value="" selected disabled hidden>Выбрать</option>
+        <select defaultValue="1" disabled={!typeFilter} onChange={e => changeCondition(e)}>
+            <option value="1" disabled>
+            Выбрать условие
+        </option>
             {conditions.map(el => <option key={el} value={el}>{el}</option>)}
         </select>
 

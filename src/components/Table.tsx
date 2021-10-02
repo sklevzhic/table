@@ -1,11 +1,10 @@
 import React from 'react'
-import { useTypedSelector } from '../hooks/useTypedSelector';
 import {TableLine} from "./TableLine";
-import {IEvent} from "../models/IEvent";
+import {IArray} from "../models/IArray";
 
 interface TableProps {
     rowsPerPage: number,
-    filterArray: IEvent[]
+    filterArray: IArray[]
 }
 
 export const Table: React.FC<TableProps> = ({ rowsPerPage, filterArray}) => {

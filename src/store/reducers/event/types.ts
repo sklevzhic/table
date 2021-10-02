@@ -1,13 +1,12 @@
-import {IEvent} from "../../../models/IEvent";
+import {IArray} from "../../../models/IArray";
 
 
 export interface EventState {
-    events: IEvent[];
-    filterArray: IEvent[] | null;
+    events: IArray[];
+    filterArray: IArray[] | null;
     typeFilter: string | number,
     conditionFilter: number | string,
     textFilter: number | string,
-    // nameCol: object
 }
 
 export enum EventActionEnum {
@@ -20,7 +19,7 @@ export enum EventActionEnum {
 
 export interface SetEventsAction {
     type: EventActionEnum.SET_EVENTS;
-    payload: IEvent[]
+    payload: IArray[]
 }
 
 export interface SetTextAction {

@@ -17,12 +17,12 @@ export const Pagination: React.FC<PaginationProps> = ({rowsPerPage, totalRows, c
     }
     return <div className={"pagination"}>
         {pageNumbers.map((el) => (
-            <a className={currentPage === el ? "pageActive" : ""}
+            <span className={currentPage === el ? "pageActive" : ""}
                key={el}
                onClick={() => setCurrentPage(el)}
             >
                 {el}
-            </a>
+            </span>
         ))}
     </div>;
 };

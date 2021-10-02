@@ -35,7 +35,7 @@ body {
   justify-content:center;
 }
 
-.pagination a {
+.pagination span {
   color: black;
   float: left;
   padding: 5px;
