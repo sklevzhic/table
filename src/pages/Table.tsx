@@ -12,7 +12,7 @@ export const TablePage: FC<TableProps> = () => {
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [currentPage, setCurrentPage] = useState(1)
 
-    const {filterArray} = useTypedSelector(state => state.event)
+    const {filterArray} = useTypedSelector(state => state.table)
 
     const indexOfLastPost = currentPage * rowsPerPage
     const indexOfFirstPage = indexOfLastPost - rowsPerPage
@@ -21,7 +21,7 @@ export const TablePage: FC<TableProps> = () => {
     return <>
         <FilterTable rowsPerPage={rowsPerPage} setRowsPerPage={setRowsPerPage}/>
         {
-            filterArray && <Table filterArray={currentArray || []} rowsPerPage={rowsPerPage}/>
+            filterArray && <Table filterArray={currentArray || []}/>
         }
         <Pagination rowsPerPage={rowsPerPage} currentPage={currentPage} totalRows={filterArray?.length || 0}
                     setCurrentPage={setCurrentPage}/>

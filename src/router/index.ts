@@ -8,10 +8,9 @@ export interface IRoute {
 }
 
 export enum RouteNames {
-    TABLE = '/table',
     HOME = '/'
 }
 
 export const publicRoutes: IRoute[] = [
-    {path: RouteNames.TABLE, exact: true, component: TablePage}
+    {path: RouteNames.HOME, exact: true, component: TablePage}
 ]

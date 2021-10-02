@@ -1,7 +1,7 @@
-import {EventAction, EventActionEnum, EventState} from "./types";
+import {TableAction, TableActionEnum, TableState} from "./types";
 
 
-const initialState: EventState = {
+const initialState: TableState = {
     events: [
         {
             "id": "1",
@@ -730,17 +730,17 @@ const nameCol: {[key: string]: any} = {
     Расстояние: "distance",
 };
 
-export default function EventReducer(state = initialState, action: EventAction): EventState {
+export default function EventReducer(state = initialState, action: TableAction): TableState {
     switch (action.type) {
-        case EventActionEnum.SET_EVENTS:
+        case TableActionEnum.SET_EVENTS:
             return {...state, events: action.payload}
-        case EventActionEnum.SET_TYPE:
+        case TableActionEnum.SET_TYPE:
             return {...state, typeFilter: action.payload}
-        case EventActionEnum.SET_TEXT:
+        case TableActionEnum.SET_TEXT:
             return {...state, textFilter: action.payload}
-        case EventActionEnum.SET_CONDITION:
+        case TableActionEnum.SET_CONDITION:
             return {...state, conditionFilter: action.payload}
-        case EventActionEnum.SET_ARRAY:
+        case TableActionEnum.SET_ARRAY:
             if (state.textFilter === '') {
                 return {...state, filterArray: state.events}
             } else if (state.typeFilter === 'Наименование') {

@@ -9,7 +9,7 @@ interface FilterTableProps {
 
 
 export const FilterTable: React.FC<FilterTableProps> = ({rowsPerPage, setRowsPerPage}) => {
-    const {textFilter, conditionFilter, typeFilter} = useTypedSelector(state => state.event)
+    const {textFilter, conditionFilter, typeFilter} = useTypedSelector(state => state.table)
     const {setText, setCondition, setType, getFilterArray} = useActions();
 
 

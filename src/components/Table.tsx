@@ -3,11 +3,10 @@ import {TableLine} from "./TableLine";
 import {IArray} from "../models/IArray";
 
 interface TableProps {
-    rowsPerPage: number,
     filterArray: IArray[]
 }
 
-export const Table: React.FC<TableProps> = ({ rowsPerPage, filterArray}) => {
+export const Table: React.FC<TableProps> = ({filterArray}) => {
 
     return <table className="table">
         <thead>
@@ -23,7 +22,7 @@ export const Table: React.FC<TableProps> = ({ rowsPerPage, filterArray}) => {
             filterArray && <>
                 {
                     filterArray.map(el => {
-                        return  <TableLine key={el.id} count={el.count} distance={el.distance} name={el.name}/>
+                        return <TableLine key={el.id} count={el.count} distance={el.distance} name={el.name}/>
                     })
                 }
             </>

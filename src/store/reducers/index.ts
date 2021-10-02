@@ -1,5 +1,5 @@
-import event from './event';
+import table from './table';
 
 export default {
-    event
+    table
 }

@@ -1,5 +1,5 @@
-import {EventActionCreators} from "./event/action-creators";
+import {TableActionCreators} from "./table/action-creators";
 
 export const allActionCreators = {
-    ...EventActionCreators
+    ...TableActionCreators
 }

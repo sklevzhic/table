@@ -1,7 +1,7 @@
 import {IArray} from "../../../models/IArray";
 
 
-export interface EventState {
+export interface TableState {
     events: IArray[];
     filterArray: IArray[] | null;
     typeFilter: string | number,
@@ -9,7 +9,7 @@ export interface EventState {
     textFilter: number | string,
 }
 
-export enum EventActionEnum {
+export enum TableActionEnum {
     SET_EVENTS = "SET_EVENTS",
     SET_TYPE = "SET_TYPE",
     SET_TEXT = "SET_TEXT",
@@ -18,27 +18,27 @@ export enum EventActionEnum {
 }
 
 export interface SetEventsAction {
-    type: EventActionEnum.SET_EVENTS;
+    type: TableActionEnum.SET_EVENTS;
     payload: IArray[]
 }
 
 export interface SetTextAction {
-    type: EventActionEnum.SET_TEXT;
+    type: TableActionEnum.SET_TEXT;
     payload: number | string
 }
 
 export interface SetTypeAction {
-    type: EventActionEnum.SET_TYPE;
+    type: TableActionEnum.SET_TYPE;
     payload: string | number
 }
 
 export interface SetConditionAction {
-    type: EventActionEnum.SET_CONDITION;
+    type: TableActionEnum.SET_CONDITION;
     payload: string | number
 }
 export interface getFilterArrayAction {
-    type: EventActionEnum.SET_ARRAY;
+    type: TableActionEnum.SET_ARRAY;
 }
 
-export type EventAction =
+export type TableAction =
     SetEventsAction | SetTextAction | SetConditionAction | SetTypeAction | getFilterArrayAction
